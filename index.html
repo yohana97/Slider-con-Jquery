@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Slider JQUERY</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    header {
+        position: relative;
+    }
+    .slide {
+        text-align: center;
+        padding: 150px 50px;
+        background-size: cover;
+        color: white;
+        font-family: sans-serif;
+    }
+    .s1 {
+        background-image: url(img/goku2.jpg);
+    }
+    .s2 {
+        background-image: url(img/dragon-ball-super.jpg);
+        display: none;
+    }
+    .s3 {
+        background-image: url(img/goku.jpg);
+        display: none;
+    }
+    .slide h1 {
+        font-size: 40pt;
+        margin-bottom: 20px;
+    }
+    .slide p {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+    button {
+        background-color: yellow;
+        padding: 5px 50px;
+        border: initial;
+    }
+    .boton {
+        font-size: 40pt;
+        color: yellow;
+        font-weight: bolder;
+        position: absolute;
+        top: 40%;
+        background-color: rgba(0,0,0,0.8);
+        padding: 0px 10px;
+        cursor: pointer;
+    }
+    .boton:hover {
+        background-color: rgba(255,255,255,0.4);
+        transition: 0.5s;
+        color: black;
+    }
+    .derecha {
+        right: 10px;
+    }
+    .izquierda {
+        left: 10px;
+    }
+    /*PAGINACIÓN*/
+    .paginacion {
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        bottom: 10px;
+        text-align: center;
+    
+
+    }
+    .paginacion li {
+        list-style: none;
+        width: 25px;
+        height: 25px;
+        background-color: yellow;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 10px;
+        cursor: pointer;
+        
+    }
+    .paginacion li:hover {
+        background-color: orange;
+        transition: 0.10s;
+    }
+    
+</style>
+</head>
+<body>
+<header>
+    <div class="slide s1">
+        <h1>Slide nº 0</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, commodi?</p>
+        
+    </div>
+    <div class="slide s2">
+        <h1>Slide nº 1</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis, sequi.</p>
+        
+    </div>
+    <div class="slide s3">
+        <h1>Slide nº 2</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, corporis.</p>
+        
+    </div>
+    <div class="boton derecha">&gt;</div>
+    <div class="boton izquierda">&lt;</div>
+    <ul class="paginacion">
+       <li>0</li>
+       <li>1</li>
+       <li>2</li>        
+    </ul>
+</header>
+<script>
+    var indice=0;
+    $(".paginacion li").eq(indice).css("background-color","orange");
+    $(".paginacion li").click(function(){
+        
+        indice=$(this).index();
+        $(".paginacion li").css("background-color","yellow");
+        $(this).css("background-color","orange");
+        $(".slide").hide();
+        $(".slide").eq(indice).fadeIn();
+    });
+    setInterval(function(){
+        indice++;
+        if(indice>2){
+            indice=0;
+        }
+        $(".slide").hide();
+        $(".slide").eq(indice).fadeIn();
+        $(".paginacion li").css("background-color","yellow");
+        $(".paginacion li").eq(indice).css("background-color","orange");
+    },7000);
+    $(".derecha").click(function(){
+        indice++;
+        if(indice>2){
+            indice=0;
+        }
+        $(".slide").hide();
+        $(".slide").eq(indice).fadeIn();
+        $(".paginacion li").css("background-color","yellow");
+        $(".paginacion li").eq(indice).css("background-color","orange");
+    });
+    $(".izquierda").click(function(){
+        indice--;
+        if(indice<0){
+            indice=2;
+        }
+        $(".slide").hide();
+        $(".slide").eq(indice).fadeIn();
+        $(".paginacion li").css("background-color","yellow");
+        $(".paginacion li").eq(indice).css("background-color","orange");
+    });
+</script>
+</body>
+</html>
